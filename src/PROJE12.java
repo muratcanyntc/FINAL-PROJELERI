@@ -1,32 +1,20 @@
-import java.util.Arrays;
-
 public class PROJE12 {
     public static void main(String[] args) {
-        int[] dizi = {1, 2, 3, 4, 5};
-        int kaydirmaMiktari = 2;
+        String kelime = "Programlama";
+        int kaydirmaMiktari = 10;
 
-        System.out.println("Önce: " + Arrays.toString(dizi));
 
-        kaydir(dizi, kaydirmaMiktari);
+        String kaydirilmisKelime = kelimeKaydir(kelime, kaydirmaMiktari);
 
-        System.out.println("Sonra: " + Arrays.toString(dizi));
+        System.out.println("Kaydırılmış kelime: " + kaydirilmisKelime);
     }
 
-    public static void kaydir(int[] dizi, int kaydirmaMiktari) {
-        int uzunluk = dizi.length;
-
-        // Kaydırma miktarını dizinin boyutuna mod alarak sınırlıyoruz
+    public static String kelimeKaydir(String kelime, int kaydirmaMiktari) {
+        int uzunluk = kelime.length();
         kaydirmaMiktari = kaydirmaMiktari % uzunluk;
 
-        // Diziyi sağa doğru kaydırma
-        for (int i = 0; i < kaydirmaMiktari; i++) {
-            int temp = dizi[uzunluk - 1];
+        String kaydirilmisKelime = kelime.substring(uzunluk - kaydirmaMiktari) + kelime.substring(0, uzunluk - kaydirmaMiktari);
 
-            for (int j = uzunluk - 1; j > 0; j--) {
-                dizi[j] = dizi[j - 1];
-            }
-
-            dizi[0] = temp;
-        }
+        return kaydirilmisKelime;
     }
 }

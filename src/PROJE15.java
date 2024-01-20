@@ -4,6 +4,6 @@ public class PROJE15 {
         double b = 2.1;
         double c = 3.7;
         double x = (c - b) / a;
-        System.out.println("x değeri: " + x);
+        System.out.println("X değeri: " + x);
     }
 }

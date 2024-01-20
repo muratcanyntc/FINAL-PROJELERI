@@ -1,53 +1,42 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class PROJE11 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Taş, kağıt, makas oyununa hoş geldiniz!");
-        System.out.println("1 - Taş");
-        System.out.println("2 - Kağıt");
-        System.out.println("3 - Makas");
-        System.out.print("Seçiminizi yapın (1-3): ");
-        int userChoice = input.nextInt();
-        int computerChoice = (int) (Math.random() * 3) + 1;
-        String userChoiceString = "";
-        String computerChoiceString = "";
-        switch (userChoice) {
-            case 1:
-                userChoiceString = "Taş";
-                break;
-            case 2:
-                userChoiceString = "Kağıt";
-                break;
-            case 3:
-                userChoiceString = "Makas";
-                break;
-            default:
-                System.out.println("Geçersiz bir seçim yaptınız!");
-                System.exit(0);
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int maxHak = 3;
+        int kullaniciSkor = 0;
+        int bilgisayarSkor = 0;
+
+        while (kullaniciSkor < maxHak && bilgisayarSkor < maxHak) {
+            System.out.print("Taş, kağıt veya makas seçin (1: Taş, 2: Kağıt, 3: Makas): ");
+            int kullaniciSecim = scanner.nextInt();
+
+            int bilgisayarSecim = random.nextInt(3) + 1;
+
+            if (kullaniciSecim == bilgisayarSecim) {
+                System.out.println("Berabere! Her ikisi de aynı seçimi yaptı.");
+            } else if ((kullaniciSecim == 1 && bilgisayarSecim == 3) ||
+                    (kullaniciSecim == 2 && bilgisayarSecim == 1) ||
+                    (kullaniciSecim == 3 && bilgisayarSecim == 2)) {
+                System.out.println("Kullanıcı kazandı!");
+                kullaniciSkor++;
+            } else {
+                System.out.println("Bilgisayar kazandı!");
+                bilgisayarSkor++;
+            }
+
+            System.out.println("Kullanıcı Skoru: " + kullaniciSkor);
+            System.out.println("Bilgisayar Skoru: " + bilgisayarSkor);
+            System.out.println("-------------------------");
         }
-        switch (computerChoice) {
-            case 1:
-                computerChoiceString = "Taş";
-                break;
-            case 2:
-                computerChoiceString = "Kağıt";
-                break;
-            case 3:
-                computerChoiceString = "Makas";
-                break;
-        }
-        System.out.println("Siz: " + userChoiceString);
-        System.out.println("Bilgisayar: " + computerChoiceString);
-        if (userChoice == computerChoice) {
-            System.out.println("Berabere!");
-        } else if ((userChoice == 1 && computerChoice == 3) ||
-                (userChoice == 2 && computerChoice == 1) ||
-                (userChoice == 3 && computerChoice == 2)) {
-            System.out.println("Tebrikler, kazandınız!");
+
+        if (kullaniciSkor == maxHak) {
+            System.out.println("Kullanıcı oyunu kazandı!");
         } else {
-            System.out.println("Maalesef, kaybettiniz!");
+            System.out.println("Bilgisayar oyunu kazandı!");
         }
-        input.close();
     }
 }
